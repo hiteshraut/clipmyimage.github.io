@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
+    <link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
+    <link rel="stylesheet" href="css/prettyPhoto.css" type="text/css" media="all">
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+    <script language="javascript" type="text/javascript">
+        function validateDataEntry() {
+            var inputText = document.forms["myForm"]["txtFullName"].value;
+            if (inputText == null || inputText =="") {
+                alert("Your name is missing!");
+                return false;
+            }
+            inputText = document.forms["myForm"]["txtEmailId"].value;
+            if (inputText == null || inputText=="") {
+                alert("Email address is required!");
+                return false;
+            }
+
+            var atpos = inputText.indexOf("@");
+            var dotpos = inputText.lastIndexOf(".");
+            if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= inputText.length) {
+                alert("Not a valid e-mail address");
+                return false;
+            }
+
+            inputText = document.forms["myForm"]["txtEmailBody"].value;
+            if (inputText == null || inputText=="") {
+                alert("Please enter few text as your message");
+                return false;
+            }
+            return true;
+        }
+    
+    </script>
+</head>
+<body>
+    <form name="myForm" action="SendMail.asp" onsubmit="return validateDataEntry()" method="post">
+    <div>
+        <div class="wrapper">
+            <input type="text" id="txtText" name="txtText" readonly="readonly" style="color: #FFFFFF;
+                border-style: none; background-color: Transparent" />
+            <br />
+        </div>
+        <div class="wrapper">
+            <span>Full Name:</span>
+            <input type="text" class="input" id="txtFullName" name="txtFullName">
+        </div>
+        <div class="wrapper">
+            <span>E-mail:</span>
+            <input type="text" class="input" id="txtEmailId" name="txtEmailId">
+        </div>
+        <div class="textarea_box">
+            <span>Message:</span>
+            <textarea name="textarea" id="txtEmailBody" cols="1" rows="1"></textarea>
+        </div>
+        <div class="wrapper">
+            <span>&nbsp;</span> <a href="#" class="button1" onclick="document.getElementById('ContactForm').reset()">
+                <span></span><strong>Clear</strong></a>
+            <input name="submit" type="submit" value="Send" class="button1" />
+        </div>
+    </div>
+    </form>
+</body>
+</html>
